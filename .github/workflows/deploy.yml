@@ -21,4 +21,4 @@ jobs:
 
       - name: Sync files to server
         run: |
-          rsync -az ./ ${{ secrets.WEBSITE_DEPLOY_SSH_USER }}@${{ secrets.WEBSITE_DEPLOY_SSH_HOST }}:/var/www/html/
+          rsync -az ./ ${{ secrets.WEBSITE_DEPLOY_SSH_USER }}@${{ secrets.WEBSITE_DEPLOY_SSH_HOST }}:.
