@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>JP Diet Reference</title>
+<style>
+  :root{
+    --bg:#f6f8f6;
+    --card:#ffffff;
+    --ink:#1f2937;
+    --muted:#5b6472;
+    --line:#d9e1d8;
+    --accent:#2f6b3b;
+    --accent-2:#5f8f4d;
+    --chip:#edf5ec;
+    --shadow:0 10px 30px rgba(0,0,0,.06);
+    --radius:18px;
+    --max:1100px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif;
+    color:var(--ink);
+    background:linear-gradient(180deg,#f3f6f2 0%,#f8faf8 100%);
+  }
+  .wrap{max-width:var(--max);margin:0 auto;padding:24px}
+  .hero{
+    background:linear-gradient(135deg,#245831 0%,#3f7a49 100%);
+    color:#fff;
+    border-radius:24px;
+    padding:32px;
+    box-shadow:var(--shadow);
+  }
+  .hero h1{margin:0 0 8px;font-size:clamp(30px,4vw,46px);line-height:1.05}
+  .hero p{margin:0;color:rgba(255,255,255,.92);max-width:900px}
+  .meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+  .chip{
+    display:inline-flex;align-items:center;gap:8px;
+    background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.18);
+    color:#fff;padding:8px 12px;border-radius:999px;font-size:14px
+  }
+  .grid{display:grid;grid-template-columns:300px 1fr;gap:24px;margin-top:24px}
+  .toc,.card{
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)
+  }
+  .toc{
+    position:sticky;top:20px;padding:18px;height:max-content
+  }
+  .toc h2,.card h2{margin:0 0 12px}
+  .toc ol{margin:0;padding-left:20px}
+  .toc li{margin:8px 0}
+  .toc a{color:var(--accent);text-decoration:none}
+  .toc a:hover{text-decoration:underline}
+  .content{display:grid;gap:24px}
+  .card{padding:24px}
+  h2{font-size:28px;color:var(--accent)}
+  h3{font-size:22px;color:#254e2c;margin:22px 0 8px}
+  p{margin:8px 0}
+  ul{margin:8px 0 0 0;padding-left:22px}
+  li{margin:6px 0}
+  .two{
+    display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px
+  }
+  .mini{
+    background:#fbfcfb;border:1px solid var(--line);border-radius:16px;padding:16px
+  }
+  .label{
+    display:inline-block;background:var(--chip);color:var(--accent);
+    border:1px solid #dcead8;border-radius:999px;padding:6px 10px;
+    font-size:13px;font-weight:700;letter-spacing:.02em;text-transform:uppercase
+  }
+  .recipe{
+    border-top:1px solid var(--line);
+    padding-top:22px;margin-top:22px
+  }
+  .recipe:first-of-type{border-top:none;padding-top:0;margin-top:0}
+  .recipe-head{
+    display:flex;justify-content:space-between;gap:12px;align-items:flex-start;flex-wrap:wrap
+  }
+  .recipe-head h3{margin:0}
+  .macros{
+    background:var(--chip);border:1px solid #dcead8;color:#234b2b;
+    padding:10px 12px;border-radius:14px;font-weight:600
+  }
+  .cols{
+    display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:14px
+  }
+  .steps ol{margin:8px 0 0 0;padding-left:22px}
+  .steps li{margin:8px 0}
+  .footer{
+    color:var(--muted);font-size:14px;margin-top:8px
+  }
+  @media (max-width: 900px){
+    .grid{grid-template-columns:1fr}
+    .toc{position:relative;top:auto}
+    .two,.cols{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="hero">
+      <h1>JP Diet Reference</h1>
+      <p>Condensed reference based on your nutrition plan for muscle gain and performance support. The first section summarizes the diet in plain language. The second section is a practical recipe handbook with easy ingredients available in Argentina.</p>
+      <div class="meta">
+        <span class="chip">Goal: muscle gain</span>
+        <span class="chip">Context: strength + BJJ</span>
+        <span class="chip">Simple meal prep friendly</span>
+        <span class="chip">Argentina grocery friendly</span>
+      </div>
+    </header>
+
+    <div class="grid">
+      <nav class="toc" aria-label="Table of contents">
+        <h2>Contents</h2>
+        <ol>
+          <li><a href="#summary">Diet summary</a></li>
+          <li><a href="#targets">Daily targets and priorities</a></li>
+          <li><a href="#structure">Meal structure</a></li>
+          <li><a href="#portions">Portion guide</a></li>
+          <li><a href="#shopping">Core shopping list</a></li>
+          <li><a href="#recipes">Recipe handbook</a></li>
+          <li><a href="#recipe-1">Chicken tortilla wrap</a></li>
+          <li><a href="#recipe-2">Pasta with ground beef tomato sauce</a></li>
+          <li><a href="#recipe-3">Chili con carne with rice</a></li>
+          <li><a href="#recipe-4">Chicken rice bowl with broccoli and carrot</a></li>
+          <li><a href="#recipe-5">Lean beef with potatoes and carrot-zucchini sauté</a></li>
+          <li><a href="#recipe-6">Yogurt, oats, banana and peanuts</a></li>
+          <li><a href="#recipe-7">Ham, cheese and cream cheese tostadas with fruit</a></li>
+          <li><a href="#recipe-8">Tuna, rice and carrot bowl</a></li>
+          <li><a href="#recipe-9">Oat and banana pancakes with yogurt</a></li>
+          <li><a href="#recipe-10">Chicken with sweet potato and zucchini</a></li>
+          <li><a href="#recipe-11">Oats with whey protein and banana</a></li>
+          <li><a href="#recipe-12">Scrambled eggs with cream cheese toast</a></li>
+          <li><a href="#recipe-13">Eggs and toast</a></li>
+          <li><a href="#recipe-14">Yogurt with oats and apple</a></li>
+          <li><a href="#recipe-15">Banana peanut butter toast</a></li>
+          <li><a href="#recipe-16">Breakfast burrito with egg, ham and cheese</a></li>
+          <li><a href="#recipe-17">Anabolic french toast</a></li>
+          <li><a href="#recipe-18">Overnight proats</a></li>
+          <li><a href="#recipe-19">Protein smoothie (licuado proteico)</a></li>
+          <li><a href="#recipe-20">Avocado egg toast with fruit</a></li>
+          <li><a href="#recipe-21">Yogurt granola bowl with fruit and nuts</a></li>
+          <li><a href="#recipe-22">Microwave oat mug cake</a></li>
+        </ol>
+      </nav>
+
+      <main class="content">
+        <section id="summary" class="card">
+          <h2>Diet summary</h2>
+          <p>This plan is built around a simple idea: keep protein adequate, keep fats controlled, and make enough room for carbohydrates so training performance stays high. For strength training and BJJ, carbs matter a lot because they support energy, recovery, and glycogen replenishment.</p>
+          <p>The plan is intentionally simple. Most meals follow the same pattern: <strong>one carb source + one protein source + fruit or vegetables + a measured fat source</strong>. You do not need fancy foods or complex cooking. Rice, potatoes, oats, chicken, lean beef, tuna, yogurt, bread, tortillas, eggs, zucchini, broccoli, carrot, onion and fruit already cover almost everything.</p>
+          <p>The main practical rule is consistency. It is better to repeat simple meals you can actually prepare than to chase variety and stop following the plan after three days.</p>
+        </section>
+
+        <section id="targets" class="card">
+          <h2>Daily targets and priorities</h2>
+          <div class="two">
+            <div class="mini">
+              <span class="label">Protein</span>
+              <p><strong>130–150 g/day</strong></p>
+              <p>Enough to support muscle gain without wasting calories that could go to carbs.</p>
+            </div>
+            <div class="mini">
+              <span class="label">Carbohydrates</span>
+              <p><strong>250–350 g/day</strong></p>
+              <p>Push higher on hard training days or when performance feels flat.</p>
+            </div>
+            <div class="mini">
+              <span class="label">Fats</span>
+              <p><strong>Moderate</strong></p>
+              <p>Use measured olive oil and adjust down when using fattier meats.</p>
+            </div>
+            <div class="mini">
+              <span class="label">Hydration</span>
+              <p><strong>1.5–3 L/day</strong></p>
+              <p>More if you sweat a lot during BJJ or summer training.</p>
+            </div>
+          </div>
+          <h3>Practical priority order</h3>
+          <ul>
+            <li>Hit carbs around training.</li>
+            <li>Keep protein in range, not excessive.</li>
+            <li>Measure added fats instead of pouring “a little bit” from the bottle.</li>
+            <li>Use vegetables mainly for health, satiety, digestion and micronutrients.</li>
+          </ul>
+        </section>
+
+        <section id="structure" class="card">
+          <h2>Meal structure</h2>
+          <div class="two">
+            <div class="mini">
+              <span class="label">Breakfast / snack</span>
+              <ul>
+                <li>Carb source</li>
+                <li>Protein source</li>
+                <li>Fruit</li>
+                <li>Optional small fat source</li>
+              </ul>
+              <p>Examples: oats + yogurt + banana, or tostadas + ham + cheese + fruit.</p>
+            </div>
+            <div class="mini">
+              <span class="label">Lunch / dinner</span>
+              <ul>
+                <li>Main carb source</li>
+                <li>Main protein source</li>
+                <li>One or two easy vegetables when they fit the meal</li>
+                <li>Measured olive oil if the meat is lean</li>
+              </ul>
+              <p>Examples: rice + chicken + broccoli, pasta + lean ground beef + tomato sauce, or beef + potatoes + zucchini.</p>
+            </div>
+          </div>
+        </section>
+
+        <section id="portions" class="card">
+          <h2>Portion guide</h2>
+          <div class="two">
+            <div class="mini">
+              <span class="label">Carbs per main meal</span>
+              <ul>
+                <li><strong>Rice:</strong> 100 g raw</li>
+                <li><strong>Pasta:</strong> 100 g raw</li>
+                <li><strong>Potato:</strong> 300–350 g raw</li>
+                <li><strong>Sweet potato:</strong> 300–350 g raw</li>
+                <li><strong>Tortillas:</strong> 2 medium tortillas</li>
+              </ul>
+            </div>
+            <div class="mini">
+              <span class="label">Protein per main meal</span>
+              <ul>
+                <li><strong>Chicken breast:</strong> 240–250 g raw</li>
+                <li><strong>Lean beef:</strong> 240–250 g raw</li>
+                <li><strong>Pork loin:</strong> 240–250 g raw</li>
+                <li><strong>Ground beef:</strong> 250 g raw; reduce added oil if not very lean</li>
+                <li><strong>Tuna:</strong> 1 can for snacks, 2 cans if used as a main protein</li>
+              </ul>
+            </div>
+          </div>
+          <h3>Vegetables</h3>
+          <p>Aim for about <strong>150 g of vegetables with main meals</strong>, but do not force them into combinations that feel bad. Good easy choices: broccoli, cauliflower, carrot, zucchini, onion, pumpkin, spinach and lettuce. Frozen broccoli or frozen mixed vegetables are completely fine.</p>
+          <h3>Olive oil rule</h3>
+          <ul>
+            <li>Lean chicken or very lean beef: <strong>1 tablespoon</strong> olive oil is fine.</li>
+            <li>Regular ground beef: <strong>0 added oil</strong> is usually better.</li>
+            <li>Moderately lean ground beef: <strong>1 teaspoon</strong> if needed.</li>
+          </ul>
+        </section>
+
+        <section id="shopping" class="card">
+          <h2>Core shopping list</h2>
+          <div class="two">
+            <div class="mini">
+              <span class="label">Protein</span>
+              <ul>
+                <li>Chicken breast</li>
+                <li>Lean ground beef</li>
+                <li>Lean beef cuts</li>
+                <li>Pork loin</li>
+                <li>Eggs</li>
+                <li>Natural or Greek yogurt</li>
+                <li>Canned tuna</li>
+                <li>Whey protein</li>
+              </ul>
+            </div>
+            <div class="mini">
+              <span class="label">Carbs</span>
+              <ul>
+                <li>Rice</li>
+                <li>Pasta</li>
+                <li>Potatoes</li>
+                <li>Sweet potatoes</li>
+                <li>Oats</li>
+                <li>Bread</li>
+                <li>Tortillas / rapiditas</li>
+                <li>Bananas and apples</li>
+              </ul>
+            </div>
+            <div class="mini">
+              <span class="label">Vegetables and fruit</span>
+              <ul>
+                <li>Broccoli</li>
+                <li>Cauliflower</li>
+                <li>Carrot</li>
+                <li>Zucchini</li>
+                <li>Onion</li>
+                <li>Lettuce</li>
+                <li>Spinach</li>
+                <li>Bananas, apples, oranges</li>
+              </ul>
+            </div>
+            <div class="mini">
+              <span class="label">Fats and extras</span>
+              <ul>
+                <li>Olive oil</li>
+                <li>Peanuts or almonds</li>
+                <li>Peanut butter</li>
+                <li>Cream cheese</li>
+                <li>Port salut or mozzarella</li>
+                <li>Salt, pepper, paprika, oregano, garlic powder</li>
+                <li>Tomato passata or puré de tomate</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section id="recipes" class="card">
+          <h2>Recipe handbook</h2>
+          <p>All recipes below use ingredients that are easy to get in Argentina and are built to fit the plan. Macros are approximate and can vary by brand and fat percentage of meat.</p>
+
+          <article class="recipe" id="recipe-1">
+            <div class="recipe-head">
+              <div>
+                <h3>1. Chicken tortilla wrap with lettuce, carrot and cheese</h3>
+                <p><span class="label">Meal: lunch / dinner</span></p>
+              </div>
+              <div class="macros">Per portion: 635 kcal • 56 g P • 47 g C • 22 g F</div>
+            </div>
+            <div class="cols">
+              <div>
+                <strong>Ingredients</strong>
+                <ul>
+                  <li>250 g chicken breast, raw</li>
+                  <li>2 wheat tortillas / rapiditas</li>
+                  <li>50 g lettuce, shredded</li>
+                  <li>60 g grated carrot</li>
+                  <li>30 g port salut light or mozzarella</li>
+                  <li>10 ml olive oil</li>
+                  <li>Salt, pepper, paprika</li>
+                </ul>
+              </div>
+              <div class="steps">
+                <strong>Instructions</strong>
+                <ol>
+                  <li>Cut the chicken into strips and season with salt, pepper and paprika.</li>
+                  <li>Cook in a pan with the olive oil until done.</li>
+                  <li>Warm the tortillas for 20–30 seconds per side.</li>
+                  <li>Fill with lettuce, carrot, chicken and cheese.</li>
+                  <li>Wrap tightly and serve.</li>
+                </ol>
+              </div>
+            </div>
+          </article>
+
+          <article class="recipe" id="recipe-2">
+            <div class="recipe-head">
+              <div>
+                <h3>2. Pasta with ground beef tomato sauce</h3>
+                <p><span class="label">Meal: lunch / dinner</span></p>
+              </div>
+              <div class="macros">Per portion: 760 kcal • 49 g P • 82 g C • 24 g F</div>
+            </div>
+            <div class="cols">
+              <div>
+                <strong>Ingredients</strong>
+                <ul>
+                  <li>100 g dry pasta</li>
+                  <li>250 g lean ground beef</li>
+                  <li>200 g tomato passata or puré de tomate</li>
+                  <li>80 g onion, finely chopped</li>
+                  <li>5 ml olive oil</li>
+                  <li>1 clove garlic, chopped</li>
+                  <li>Salt, pepper, oregano</li>
+                </ul>
+              </div>
+              <div class="steps">
+                <strong>Instructions</strong>
+                <ol>
+                  <li>Boil the pasta in salted water until cooked.</li>
+                  <li>Cook onion and garlic in the olive oil for 2–3 minutes.</li>
+                  <li>Add the ground beef and break it up well.</li>
+                  <li>When browned, add passata, salt, pepper and oregano.</li>
+                  <li>Simmer 8–10 minutes and serve over the pasta.</li>
+                </ol>
+              </div>
+            </div>
+          </article>
+
+          <article class="recipe" id="recipe-3">
+            <div class="recipe-head">
+              <div>
+                <h3>3. Chili con carne with rice</h3>
+                <p><span class="label">Meal: lunch / dinner</span></p>
+              </div>
+              <div class="macros">Per portion: 790 kcal • 50 g P • 84 g C • 25 g F</div>
+            </div>
+            <div class="cols">
+              <div>
+                <strong>Ingredients</strong>
+                <ul>
+                  <li>80 g raw rice</li>
+                  <li>220 g lean ground beef</li>
+                  <li>130 g cooked red beans</li>
+                  <li>150 g tomato passata</li>
+                  <li>80 g onion, chopped</li>
+                  <li>50 g red bell pepper, chopped</li>
+                  <li>5 ml olive oil</li>
+                  <li>Salt, paprika, cumin, ají molido</li>
+                </ul>
+              </div>
+              <div class="steps">
+                <strong>Instructions</strong>
+                <ol>
+                  <li>Cook the rice separately.</li>
+                  <li>Cook onion and bell pepper in oil until soft.</li>
+                  <li>Add the ground beef and brown it.</li>
+                  <li>Add beans, passata and spices, then simmer 10 minutes.</li>
+                  <li>Serve the chili with the rice.</li>
+                </ol>
+              </div>
+            </div>
+          </article>
+
+          <article class="recipe" id="recipe-4">
+            <div class="recipe-head">
+              <div>
+                <h3>4. Chicken rice bowl with broccoli and carrot</h3>
+                <p><span class="label">Meal: lunch / dinner</span></p>
+              </div>
+              <div class="macros">Per portion: 700 kcal • 57 g P • 83 g C • 14 g F</div>
+            </div>
+            <div class="cols">
+              <div>
+                <strong>Ingredients</strong>
+                <ul>
+                  <li>100 g raw rice</li>
+                  <li>250 g chicken breast</li>
+                  <li>100 g broccoli florets</li>
+                  <li>80 g carrot, sliced</li>
+                  <li>10 ml olive oil</li>
+                  <li>Salt, pepper, garlic powder</li>
+                  <li>Lemon juice, optional</li>
+                </ul>
+              </div>
+              <div class="steps">
+                <strong>Instructions</strong>
+                <ol>
+                  <li>Cook the rice.</li>
+                  <li>Steam or microwave the broccoli and carrot until tender.</li>
+                  <li>Cook chicken pieces in a pan with olive oil and seasonings.</li>
+                  <li>Serve everything in a bowl and add lemon juice if desired.</li>
+                </ol>
+              </div>
+            </div>
+          </article>
+
+          <article class="recipe" id="recipe-5">
+            <div class="recipe-head">
+              <div>
+                <h3>5. Lean beef with potatoes and carrot-zucchini sauté</h3>
+                <p><span class="label">Meal: lunch / dinner</span></p>
+              </div>
+              <div class="macros">Per portion: 735 kcal • 51 g P • 66 g C • 28 g F</div>
+            </div>
+            <div class="cols">
+              <div>
+                <strong>Ingredients</strong>
+                <ul>
+                  <li>250 g lean beef steak or cubes</li>
+                  <li>350 g potatoes</li>
+                  <li>100 g zucchini, sliced</li>
+                  <li>70 g carrot, sliced thin</li>
+                  <li>10 ml olive oil</li>
+                  <li>Salt, pepper, oregano</li>
+                </ul>
+              </div>
+              <div class="steps">
+                <strong>Instructions</strong>
+                <ol>
+                  <li>Cube the potatoes and boil or bake until cooked.</li>
+                  <li>Season and cook the beef in a hot pan.</li>
+                  <li>Sauté zucchini and carrot in a pan until just tender.</li>
+                  <li>Serve everything together and add olive oil where needed.</li>
+                </ol>
+              </div>
+            </div>
+          </article>
+
+          <article class="recipe" id="recipe-6">
+            <div class="recipe-head">
+              <div>
+                <h3>6. Yogurt, oats, banana and peanuts</h3>
+                <p><span class="label">Meal: breakfast / pre-gym snack</span></p>
+              </div>
+              <div class="macros">Per portion: 520 kcal • 23 g P • 71 g C • 15 g F</div>
+            </div>
+            <div class="cols">
+              <div>
+                <strong>Ingredients</strong>
+                <ul>
+                  <li>250 g natural or Greek yogurt</li>
+                  <li>60 g oats</li>
+                  <li>1 medium banana</li>
+                  <li>15 g peanuts</li>
+                  <li>Cinnamon, optional</li>
+                </ul>
+              </div>
+              <div class="steps">
+                <strong>Instructions</strong>
+                <ol>
+                  <li>Put the yogurt in a bowl.</li>
+                  <li>Add oats, sliced banana and peanuts.</li>
+                  <li>Mix and let sit 5 minutes if you want the oats softer.</li>
+                  <li>Add cinnamon if you like.</li>
+                </ol>
+              </div>
+            </div>
+          </article>
+
+          <article class="recipe" id="recipe-7">
+            <div class="recipe-head">
+              <div>
+                <h3>7. Ham, cheese and cream cheese tostadas with fruit</h3>
+                <p><span class="label">Meal: breakfast / snack</span></p>
+              </div>
+              <div class="macros">Per portion: 470 kcal • 25 g P • 46 g C • 19 g F</div>
+            </div>
+            <div class="cols">
+              <div>
+                <strong>Ingredients</strong>
+                <ul>
+                  <li>4 slices sandwich bread</li>
+                  <li>60 g cooked ham</li>
+                  <li>30 g port salut light or mozzarella</li>
+                  <li>20 g cream cheese</li>
+                  <li>1 apple or 1 orange</li>
+                  <li>Black pepper, optional</li>
+                </ul>
+              </div>
+              <div class="steps">
+                <strong>Instructions</strong>
+                <ol>
+                  <li>Toast the bread.</li>
+                  <li>Spread cream cheese on the toast.</li>
+                  <li>Add ham and cheese on top.</li>
+                  <li>Heat briefly so the cheese softens if you want.</li>
+                  <li>Eat with the fruit on the side.</li>
+                </ol>
+              </div>
+            </div>
+          </article>
+
+          <article class="recipe" id="recipe-8">
+            <div class="recipe-head">
+              <div>
+                <h3>8. Tuna, rice and carrot bowl</h3>
+                <p><span class="label">Meal: lunch / quick dinner</span></p>
+              </div>
+              <div class="macros">Per portion: 620 kcal • 42 g P • 81 g C • 13 g F</div>
+            </div>
+            <div class="cols">
+              <div>
+                <strong>Ingredients</strong>
+                <ul>
+                  <li>100 g raw rice</li>
+                  <li>1 can tuna in water, drained</li>
+                  <li>80 g grated carrot</li>
+                  <li>40 g lettuce, chopped</li>
+                  <li>10 ml olive oil</li>
+                  <li>Salt, pepper, lemon juice</li>
+                </ul>
+              </div>
+              <div class="steps">
+                <strong>Instructions</strong>
+                <ol>
+                  <li>Cook the rice.</li>
+                  <li>Drain the tuna and break it up with a fork.</li>
+                  <li>Mix carrot and lettuce with a little salt and lemon juice.</li>
+                  <li>Serve rice with tuna and the vegetables, then add olive oil.</li>
+                </ol>
+              </div>
+            </div>
+          </article>
+
+          <article class="recipe" id="recipe-9">
+            <div class="recipe-head">
+              <div>
+                <h3>9. Oat and banana pancakes with yogurt</h3>
+                <p><span class="label">Meal: breakfast / snack</span></p>
+              </div>
+              <div class="macros">Per portion: 560 kcal • 27 g P • 68 g C • 18 g F</div>
+            </div>
+            <div class="cols">
+              <div>
+                <strong>Ingredients</strong>
+                <ul>
+                  <li>60 g oats</li>
+                  <li>2 eggs</li>
+                  <li>1 banana</li>
+                  <li>150 g natural yogurt</li>
+                  <li>5 g baking powder, optional</li>
+                  <li>Cinnamon, optional</li>
+                </ul>
+              </div>
+              <div class="steps">
+                <strong>Instructions</strong>
+                <ol>
+                  <li>Blend or mash oats, eggs and banana into a batter.</li>
+                  <li>Add baking powder and cinnamon if desired.</li>
+                  <li>Cook small pancakes in a non-stick pan over medium heat.</li>
+                  <li>Serve with the yogurt on the side or on top.</li>
+                </ol>
+              </div>
+            </div>
+          </article>
+
+          <article class="recipe" id="recipe-10">
+            <div class="recipe-head">
+              <div>
+                <h3>10. Chicken with sweet potato and zucchini</h3>
+                <p><span class="label">Meal: lunch / dinner</span></p>
+              </div>
+              <div class="macros">Per portion: 675 kcal • 55 g P • 63 g C • 20 g F</div>
+            </div>
+            <div class="cols">
+              <div>
+                <strong>Ingredients</strong>
+                <ul>
+                  <li>250 g chicken breast</li>
+                  <li>350 g sweet potato</li>
+                  <li>150 g zucchini</li>
+                  <li>10 ml olive oil</li>
+                  <li>Salt, pepper, paprika, garlic powder</li>
+                </ul>
+              </div>
+              <div class="steps">
+                <strong>Instructions</strong>
+                <ol>
+                  <li>Cut the sweet potato into cubes and bake or air fry until tender.</li>
+                  <li>Slice the zucchini and cook it in a pan or roast it.</li>
+                  <li>Season and cook the chicken in a pan with olive oil.</li>
+                  <li>Plate everything together.</li>
+                </ol>
+              </div>
+            </div>
+          </article>
+
+          <article class="recipe" id="recipe-11">
+            <div class="recipe-head">
+              <div>
+                <h3>11. Oats with whey protein and banana</h3>
+                <p><span class="label">Meal: breakfast / pre-gym</span></p>
+              </div>
+              <div class="macros">Per portion: 540 kcal • 35 g P • 70 g C • 10 g F</div>
+            </div>
+            <div class="cols">
+              <div>
+                <strong>Ingredients</strong>
+                <ul>
+                  <li>60 g oats</li>
+                  <li>1 scoop whey protein (30 g)</li>
+                  <li>1 banana</li>
+                  <li>200 ml milk or water</li>
+                  <li>Cinnamon, optional</li>
+                </ul>
+              </div>
+              <div class="steps">
+                <strong>Instructions</strong>
+                <ol>
+                  <li>Cook the oats with milk or water until soft.</li>
+                  <li>Let them cool for 1 minute so the whey mixes better.</li>
+                  <li>Stir in the whey protein until smooth.</li>
+                  <li>Add sliced banana and cinnamon on top.</li>
+                </ol>
+              </div>
+            </div>
+          </article>
+
+          <article class="recipe" id="recipe-12">
+            <div class="recipe-head">
+              <div>
+                <h3>12. Scrambled eggs with cream cheese toast</h3>
+                <p><span class="label">Meal: breakfast</span></p>
+              </div>
+              <div class="macros">Per portion: 505 kcal • 26 g P • 31 g C • 30 g F</div>
+            </div>
+            <div class="cols">
+              <div>
+                <strong>Ingredients</strong>
+                <ul>
+                  <li>3 eggs</li>
+                  <li>2 slices sandwich bread</li>
+                  <li>25 g cream cheese</li>
+                  <li>5 ml olive oil or a small knob of butter</li>
+                  <li>Salt and pepper</li>
+                </ul>
+              </div>
+              <div class="steps">
+                <strong>Instructions</strong>
+                <ol>
+                  <li>Beat the eggs with salt and pepper.</li>
+                  <li>Cook them gently in a pan with the oil or butter, stirring until just set.</li>
+                  <li>Toast the bread.</li>
+                  <li>Spread cream cheese on the toast and serve with the eggs.</li>
+                </ol>
+              </div>
+            </div>
+          </article>
+
+          <article class="recipe" id="recipe-13">
+            <div class="recipe-head">
+              <div>
+                <h3>13. Eggs and toast</h3>
+                <p><span class="label">Meal: breakfast</span></p>
+              </div>
+              <div class="macros">Per portion: 420 kcal • 25 g P • 30 g C • 22 g F</div>
+            </div>
+            <div class="cols">
+              <div>
+                <strong>Ingredients</strong>
+                <ul>
+                  <li>3 eggs</li>
+                  <li>2 slices bread</li>
+                  <li>5 ml olive oil</li>
+                  <li>Salt and pepper</li>
+                </ul>
+              </div>
+              <div class="steps">
+                <strong>Instructions</strong>
+                <ol>
+                  <li>Toast the bread.</li>
+                  <li>Cook the eggs scrambled, fried or as an omelette.</li>
+                  <li>Season and serve together.</li>
+                </ol>
+              </div>
+            </div>
+          </article>
+
+          <article class="recipe" id="recipe-14">
+            <div class="recipe-head">
+              <div>
+                <h3>14. Yogurt with oats and apple</h3>
+                <p><span class="label">Meal: breakfast / snack</span></p>
+              </div>
+              <div class="macros">Per portion: 480 kcal • 22 g P • 65 g C • 12 g F</div>
+            </div>
+            <div class="cols">
+              <div>
+                <strong>Ingredients</strong>
+                <ul>
+                  <li>250 g natural yogurt</li>
+                  <li>50 g oats</li>
+                  <li>1 apple</li>
+                  <li>10 g peanuts or almonds, optional</li>
+                </ul>
+              </div>
+              <div class="steps">
+                <strong>Instructions</strong>
+                <ol>
+                  <li>Dice or grate the apple.</li>
+                  <li>Mix yogurt, oats and apple in a bowl.</li>
+                  <li>Add peanuts or almonds if you want a little more texture.</li>
+                </ol>
+              </div>
+            </div>
+          </article>
+
+          <article class="recipe" id="recipe-15">
+            <div class="recipe-head">
+              <div>
+                <h3>15. Banana peanut butter toast</h3>
+                <p><span class="label">Meal: breakfast / pre-gym</span></p>
+              </div>
+              <div class="macros">Per portion: 500 kcal • 18 g P • 60 g C • 20 g F</div>
+            </div>
+            <div class="cols">
+              <div>
+                <strong>Ingredients</strong>
+                <ul>
+                  <li>2 slices bread</li>
+                  <li>1 banana</li>
+                  <li>20 g peanut butter</li>
+                  <li>Cinnamon, optional</li>
+                </ul>
+              </div>
+              <div class="steps">
+                <strong>Instructions</strong>
+                <ol>
+                  <li>Toast the bread.</li>
+                  <li>Spread peanut butter on both slices.</li>
+                  <li>Add sliced banana on top.</li>
+                  <li>Finish with cinnamon if you like.</li>
+                </ol>
+              </div>
+            </div>
+          </article>
+
+          <article class="recipe" id="recipe-16">
+            <div class="recipe-head">
+              <div>
+                <h3>16. Breakfast burrito with egg, ham and cheese</h3>
+                <p><span class="label">Meal: breakfast</span></p>
+              </div>
+              <div class="macros">Per portion: 520 kcal • 35 g P • 40 g C • 23 g F</div>
+            </div>
+            <div class="cols">
+              <div>
+                <strong>Ingredients</strong>
+                <ul>
+                  <li>2 rapiditas integrales</li>
+                  <li>2 eggs</li>
+                  <li>60 g jamón cocido</li>
+                  <li>30 g port salut light or mozzarella</li>
+                  <li>5 ml olive oil</li>
+                  <li>Salt, pepper, oregano</li>
+                  <li>Optional: 1 cda palta, tomato slices</li>
+                </ul>
+              </div>
+              <div class="steps">
+                <strong>Instructions</strong>
+                <ol>
+                  <li>Beat the eggs with salt and pepper, then scramble them in a pan with the olive oil.</li>
+                  <li>Warm the rapiditas in the same pan for 20 seconds per side.</li>
+                  <li>Layer ham, scrambled eggs and cheese on each rapidita.</li>
+                  <li>Add palta or tomato if using.</li>
+                  <li>Roll up tightly, folding the bottom edge in first so nothing falls out.</li>
+                </ol>
+              </div>
+            </div>
+          </article>
+
+          <article class="recipe" id="recipe-17">
+            <div class="recipe-head">
+              <div>
+                <h3>17. Anabolic french toast</h3>
+                <p><span class="label">Meal: breakfast / pre-gym</span></p>
+              </div>
+              <div class="macros">Per portion: 660 kcal • 49 g P • 80 g C • 15 g F</div>
+            </div>
+            <div class="cols">
+              <div>
+                <strong>Ingredients</strong>
+                <ul>
+                  <li>4 slices pan lactal integral</li>
+                  <li>2 eggs</li>
+                  <li>1 scoop whey protein (30 g)</li>
+                  <li>50 ml leche descremada</li>
+                  <li>Cinnamon</li>
+                  <li>Edulcorante to taste</li>
+                  <li>1 banana, sliced (topping)</li>
+                  <li>Optional: 1 cdita pasta de maní (topping)</li>
+                </ul>
+              </div>
+              <div class="steps">
+                <strong>Instructions</strong>
+                <ol>
+                  <li>Whisk together the eggs, whey protein, milk, cinnamon and sweetener into a smooth batter.</li>
+                  <li>Dip each bread slice into the batter, pressing lightly so it absorbs well on both sides.</li>
+                  <li>Cook in a non-stick pan over medium heat, about 2 minutes per side until golden.</li>
+                  <li>Top with sliced banana and peanut butter if using.</li>
+                </ol>
+                <p class="footer">Adapted from Greg Doucette's recipe for Argentina: no sugar-free syrup needed, use banana and edulcorante instead. The whey in the batter is what makes it high-protein.</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="recipe" id="recipe-18">
+            <div class="recipe-head">
+              <div>
+                <h3>18. Overnight proats</h3>
+                <p><span class="label">Meal: breakfast / pre-gym</span></p>
+              </div>
+              <div class="macros">Per portion: 580 kcal • 41 g P • 80 g C • 11 g F</div>
+            </div>
+            <div class="cols">
+              <div>
+                <strong>Ingredients</strong>
+                <ul>
+                  <li>60 g oats</li>
+                  <li>1 scoop whey protein (30 g)</li>
+                  <li>200 ml leche descremada</li>
+                  <li>1 banana</li>
+                  <li>10 g pasta de maní</li>
+                  <li>Cinnamon</li>
+                </ul>
+              </div>
+              <div class="steps">
+                <strong>Instructions</strong>
+                <ol>
+                  <li>Mix oats, whey protein and milk in a jar or container.</li>
+                  <li>Stir well so there are no clumps, then cover and refrigerate overnight.</li>
+                  <li>In the morning, stir again, then top with sliced banana and peanut butter.</li>
+                  <li>Add cinnamon. Eat cold or microwave 1 minute if you prefer warm.</li>
+                </ol>
+                <p class="footer">Zero cooking, prepare the night before. Great for mornings before BJJ privates when time is tight.</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="recipe" id="recipe-19">
+            <div class="recipe-head">
+              <div>
+                <h3>19. Protein smoothie (licuado proteico)</h3>
+                <p><span class="label">Meal: breakfast / pre-gym</span></p>
+              </div>
+              <div class="macros">Per portion: 610 kcal • 42 g P • 81 g C • 13 g F</div>
+            </div>
+            <div class="cols">
+              <div>
+                <strong>Ingredients</strong>
+                <ul>
+                  <li>60 g oats</li>
+                  <li>1 scoop whey protein (30 g)</li>
+                  <li>200 ml leche descremada</li>
+                  <li>1 banana</li>
+                  <li>15 g pasta de maní</li>
+                  <li>Ice cubes, optional</li>
+                  <li>Cinnamon, optional</li>
+                </ul>
+              </div>
+              <div class="steps">
+                <strong>Instructions</strong>
+                <ol>
+                  <li>Put everything in a blender: oats, whey, milk, banana, peanut butter and ice.</li>
+                  <li>Blend until completely smooth, about 30 seconds.</li>
+                  <li>Pour into a large glass or shaker bottle and drink.</li>
+                </ol>
+                <p class="footer">Drinkable breakfast in under a minute. The oats blend down completely if you use a decent blender. Good option when you cannot sit down to eat.</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="recipe" id="recipe-20">
+            <div class="recipe-head">
+              <div>
+                <h3>20. Avocado egg toast with fruit</h3>
+                <p><span class="label">Meal: breakfast</span></p>
+              </div>
+              <div class="macros">Per portion: 470 kcal • 24 g P • 48 g C • 21 g F</div>
+            </div>
+            <div class="cols">
+              <div>
+                <strong>Ingredients</strong>
+                <ul>
+                  <li>2 slices pan lactal integral</li>
+                  <li>3 eggs</li>
+                  <li>1 cda palta (about 25 g)</li>
+                  <li>5 ml olive oil</li>
+                  <li>Salt, pepper, ají molido</li>
+                  <li>1 fruit (apple, orange or banana)</li>
+                </ul>
+              </div>
+              <div class="steps">
+                <strong>Instructions</strong>
+                <ol>
+                  <li>Toast the bread.</li>
+                  <li>Scramble the eggs in a pan with olive oil, keeping them slightly soft.</li>
+                  <li>Spread palta on the toast and pile eggs on top.</li>
+                  <li>Season with salt, pepper and ají molido.</li>
+                  <li>Eat with the fruit on the side.</li>
+                </ol>
+                <p class="footer">Straight from the nutritionist's menu ideas. Lighter on protein than other breakfasts, so pair with a higher-protein lunch.</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="recipe" id="recipe-21">
+            <div class="recipe-head">
+              <div>
+                <h3>21. Yogurt granola bowl with fruit and nuts</h3>
+                <p><span class="label">Meal: breakfast / snack</span></p>
+              </div>
+              <div class="macros">Per portion: 560 kcal • 20 g P • 80 g C • 20 g F</div>
+            </div>
+            <div class="cols">
+              <div>
+                <strong>Ingredients</strong>
+                <ul>
+                  <li>250 g yogurt natural or griego</li>
+                  <li>60 g granola sin azúcar</li>
+                  <li>150 g fruit, chopped (banana, apple, frutillas or whatever is in season)</li>
+                  <li>4 walnut halves or 5 almonds</li>
+                </ul>
+              </div>
+              <div class="steps">
+                <strong>Instructions</strong>
+                <ol>
+                  <li>Spoon the yogurt into a bowl.</li>
+                  <li>Add the granola and chopped fruit.</li>
+                  <li>Top with the nuts.</li>
+                  <li>Mix as much or as little as you like and eat immediately so the granola stays crunchy.</li>
+                </ol>
+                <p class="footer">Another nutritionist-suggested combo. Use whatever seasonal fruit is cheapest — in winter, apple and banana work fine.</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="recipe" id="recipe-22">
+            <div class="recipe-head">
+              <div>
+                <h3>22. Microwave oat mug cake</h3>
+                <p><span class="label">Meal: breakfast / snack</span></p>
+              </div>
+              <div class="macros">Per portion: 520 kcal • 39 g P • 69 g C • 11 g F</div>
+            </div>
+            <div class="cols">
+              <div>
+                <strong>Ingredients</strong>
+                <ul>
+                  <li>60 g oats</li>
+                  <li>1 egg</li>
+                  <li>1 scoop whey protein (30 g)</li>
+                  <li>1 banana</li>
+                  <li>5 g baking powder (polvo de hornear)</li>
+                  <li>Cinnamon</li>
+                  <li>Edulcorante to taste</li>
+                </ul>
+              </div>
+              <div class="steps">
+                <strong>Instructions</strong>
+                <ol>
+                  <li>Mash the banana in a microwave-safe mug or bowl.</li>
+                  <li>Add oats, egg, whey, baking powder, cinnamon and sweetener. Mix well.</li>
+                  <li>Microwave on high for 2–3 minutes until the cake is set and springs back when touched.</li>
+                  <li>Flip onto a plate or eat straight from the mug.</li>
+                </ol>
+                <p class="footer">Ready in under 5 minutes, no pan needed. Tastes like banana bread. Add a spoonful of pasta de maní on top if you want extra calories.</p>
+              </div>
+            </div>
+          </article>
+
+          <p class="footer">These recipes are intentionally simple. You can rotate them with the same structure: one main carb, one main protein, easy vegetables where they fit, and measured fats.</p>
+        </section>
+      </main>
+    </div>
+  </div>
+</body>
+</html>
