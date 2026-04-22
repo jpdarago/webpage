@@ -111,6 +111,20 @@
   }
   .recipe-controls button:hover{background:var(--accent);color:#fff}
 
+  /* --- Per-recipe copy buttons --- */
+  .recipe-copy-buttons{
+    display:flex;gap:8px;margin-top:14px;padding-top:12px;border-top:1px solid var(--line);flex-wrap:wrap
+  }
+  .recipe-copy-buttons button{
+    background:var(--chip);color:var(--accent);border:1px solid #dcead8;
+    border-radius:10px;padding:6px 12px;font-size:12px;font-weight:600;
+    cursor:pointer;transition:background .15s,color .15s;
+    display:inline-flex;align-items:center;gap:5px
+  }
+  .recipe-copy-buttons button:hover{background:var(--accent);color:#fff}
+  .recipe-copy-buttons button.copied{background:#245831;color:#fff;border-color:#245831}
+  .recipe-copy-buttons button svg{width:14px;height:14px;flex-shrink:0}
+
   /* --- Recipes --- */
   .recipe-category{margin-top:28px}
   .recipe-category:first-child{margin-top:0}
@@ -231,6 +245,95 @@
   @media (max-width: 900px){
     .back-to-top{display:none}
   }
+
+  /* --- Quick macro log panel --- */
+  .macro-log-bar{
+    position:sticky;top:0;z-index:90;
+    background:rgba(255,255,255,.94);
+    backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--line);
+    border-radius:0 0 16px 16px;
+    padding:10px 24px;margin-top:12px;
+    transition:box-shadow .2s
+  }
+  .macro-log-bar.scrolled{box-shadow:0 2px 12px rgba(0,0,0,.08)}
+  .macro-log-inner{
+    display:flex;align-items:center;gap:14px;flex-wrap:wrap
+  }
+  .macro-log-title{
+    font-size:14px;font-weight:700;color:var(--accent);white-space:nowrap
+  }
+  .macro-log-totals{
+    display:flex;gap:8px;flex-wrap:wrap;align-items:center;flex:1
+  }
+  .macro-pill{
+    display:inline-flex;align-items:center;gap:4px;
+    background:var(--chip);border:1px solid #dcead8;
+    padding:4px 10px;border-radius:10px;
+    font-size:13px;font-weight:600;color:#234b2b;white-space:nowrap
+  }
+  .macro-pill .val{font-variant-numeric:tabular-nums}
+  .macro-pill.over{background:#fce8e8;border-color:#e8bcbc;color:#8b2020}
+  .macro-pill.ok{background:#e1f5e0;border-color:#b4dab2;color:#1e5c1b}
+  .macro-pill-bar{
+    width:48px;height:5px;border-radius:3px;
+    background:#d9e1d8;overflow:hidden;margin-left:4px
+  }
+  .macro-pill-bar-fill{
+    height:100%;border-radius:3px;
+    background:var(--accent);transition:width .3s
+  }
+  .macro-pill.over .macro-pill-bar-fill{background:#c0392b}
+  .macro-log-actions{
+    display:flex;gap:6px;flex-wrap:wrap
+  }
+  .macro-log-actions button{
+    background:var(--chip);color:var(--accent);border:1px solid #dcead8;
+    border-radius:10px;padding:5px 12px;font-size:12px;font-weight:600;
+    cursor:pointer;transition:background .15s,color .15s;
+    display:inline-flex;align-items:center;gap:4px;white-space:nowrap
+  }
+  .macro-log-actions button:hover{background:var(--accent);color:#fff}
+  .macro-log-actions button.copied{background:#245831;color:#fff;border-color:#245831}
+  .macro-log-entries{margin-top:8px}
+  .macro-log-entries[hidden]{display:none}
+  .macro-log-list{
+    list-style:none;padding:0;margin:0;
+    display:flex;flex-direction:column;gap:4px
+  }
+  .macro-log-list li{
+    display:flex;align-items:center;gap:8px;
+    background:var(--chip);border:1px solid #dcead8;
+    padding:5px 10px;border-radius:10px;font-size:12px;color:#234b2b
+  }
+  .macro-log-list li .entry-time{color:var(--muted);font-variant-numeric:tabular-nums}
+  .macro-log-list li .entry-macros{color:var(--muted);margin-left:auto;white-space:nowrap}
+  .macro-log-list li .remove-entry{
+    background:none;border:none;cursor:pointer;
+    color:var(--muted);font-size:18px;line-height:1;padding:0 2px;
+    transition:color .15s
+  }
+  .macro-log-list li .remove-entry:hover{color:#c0392b}
+  .btn-quick-log{
+    background:var(--accent);color:#fff;border:none;
+    border-radius:8px;padding:5px 12px;font-size:12px;font-weight:700;
+    cursor:pointer;transition:background .15s,transform .1s;
+    white-space:nowrap;flex-shrink:0
+  }
+  .btn-quick-log:hover{background:#245831}
+  .btn-quick-log:active{transform:scale(.95)}
+  .btn-quick-log.logged{
+    background:#e1f5e0;color:var(--accent);border:1px solid #dcead8;
+    pointer-events:none
+  }
+  @media (max-width: 900px){
+    .macro-log-bar{padding:8px 14px;margin-top:8px;border-radius:0 0 12px 12px}
+    .macro-log-inner{gap:8px}
+    .macro-log-title{font-size:13px}
+    .macro-pill{font-size:12px;padding:3px 8px}
+    .macro-pill-bar{width:36px}
+    .macro-log-actions button{font-size:11px;padding:4px 10px}
+  }
 </style>
 </head>
 <body>
@@ -238,6 +341,37 @@
     <header class="hero">
       <h1>JP Diet Reference</h1>
     </header>
+
+    <!-- Quick macro log -->
+    <div class="macro-log-bar" id="macroLogBar">
+      <div class="macro-log-inner">
+        <span class="macro-log-title" id="macroLogDate">Today</span>
+        <div class="macro-log-totals">
+          <span class="macro-pill" data-macro="kcal"><span class="val" id="mlKcal">0</span> kcal</span>
+          <span class="macro-pill" data-macro="p"><span class="val" id="mlP">0</span>/140g P<span class="macro-pill-bar"><span class="macro-pill-bar-fill" id="mlPBar" style="width:0%"></span></span></span>
+          <span class="macro-pill" data-macro="c"><span class="val" id="mlC">0</span>/300g C<span class="macro-pill-bar"><span class="macro-pill-bar-fill" id="mlCBar" style="width:0%"></span></span></span>
+          <span class="macro-pill" data-macro="f"><span class="val" id="mlF">0</span>g F</span>
+        </div>
+        <div class="macro-log-actions">
+          <button onclick="toggleLogEntries()" title="Show/hide logged meals">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+            <span id="mlCount">0</span> meals
+          </button>
+          <button onclick="copyLogToClipboard()" id="btnCopyLog" title="Copy as tab-separated text for Google Sheets">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="15" y1="3" x2="15" y2="21"/></svg>
+            Sheets
+          </button>
+          <button onclick="downloadLogCSV()" title="Download log as CSV file">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            CSV
+          </button>
+          <button onclick="clearLog()" title="Clear today's log" style="color:var(--muted);border-color:var(--line)">Clear</button>
+        </div>
+      </div>
+      <div class="macro-log-entries" id="macroLogEntries" hidden>
+        <ul class="macro-log-list" id="macroLogList"></ul>
+      </div>
+    </div>
 
     <!-- Mobile collapsible TOC -->
     <details class="toc-mobile" id="toc-mobile">
@@ -1559,6 +1693,222 @@
     }
   }, {passive: true});
   updateSpy();
+
+  // --- Copy buttons for recipes ---
+  const clipIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>';
+  const sheetIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="15" y1="3" x2="15" y2="21"/></svg>';
+
+  document.querySelectorAll('.recipe').forEach(function(recipe) {
+    var body = recipe.querySelector('.recipe-body');
+    if (!body) return;
+    var div = document.createElement('div');
+    div.className = 'recipe-copy-buttons';
+    div.innerHTML = '<button class="btn-copy-recipe" title="Copy full recipe as text (for WhatsApp)">' + clipIcon + ' Copy recipe</button>' +
+      '<button class="btn-copy-macros" title="Copy name + macros (tab-separated for spreadsheet)">' + sheetIcon + ' Copy macros</button>';
+    body.appendChild(div);
+  });
+
+  function flashCopied(btn) {
+    btn.classList.add('copied');
+    var orig = btn.innerHTML;
+    var label = btn.classList.contains('btn-copy-recipe') ? 'Copy recipe' : 'Copy macros';
+    btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Copied!';
+    setTimeout(function() { btn.innerHTML = orig; btn.classList.remove('copied'); }, 1500);
+  }
+
+  document.addEventListener('click', function(e) {
+    var btn = e.target.closest('.btn-copy-recipe');
+    if (btn) {
+      e.stopPropagation();
+      var recipe = btn.closest('.recipe');
+      var title = recipe.querySelector('.recipe-title').textContent.trim();
+      var macros = recipe.querySelector('.macros').textContent.trim();
+      var ingredients = Array.from(recipe.querySelectorAll('.recipe-body ul li')).map(function(li) {
+        return '- ' + li.textContent.trim();
+      });
+      var steps = Array.from(recipe.querySelectorAll('.recipe-body ol li')).map(function(li, i) {
+        return (i + 1) + '. ' + li.textContent.trim();
+      });
+      var text = '*' + title + '*\n' + macros + '\n\n*Ingredients:*\n' + ingredients.join('\n') + '\n\n*Steps:*\n' + steps.join('\n');
+      navigator.clipboard.writeText(text).then(function() { flashCopied(btn); });
+      return;
+    }
+
+    btn = e.target.closest('.btn-copy-macros');
+    if (btn) {
+      e.stopPropagation();
+      var recipe = btn.closest('.recipe');
+      var title = recipe.querySelector('.recipe-title').textContent.trim().replace(/^\d+\.\s*/, '');
+      var macrosText = recipe.querySelector('.macros').textContent.trim();
+      var m = macrosText.match(/(\d+)\s*kcal\s*·\s*(\d+)P\s*·\s*(\d+)C\s*·\s*(\d+)F/);
+      var text = m ? title + '\t' + m[1] + '\t' + m[2] + '\t' + m[3] + '\t' + m[4] : title + '\t' + macrosText;
+      navigator.clipboard.writeText(text).then(function() { flashCopied(btn); });
+      return;
+    }
+  });
+
+  // ===== QUICK MACRO LOG =====
+  var TARGETS = { p: 140, c: 300 };
+
+  function todayStr() { return new Date().toISOString().slice(0, 10); }
+  function friendlyDate(iso) {
+    var d = new Date(iso + 'T12:00:00');
+    return d.toLocaleDateString('en-GB', { weekday:'short', day:'numeric', month:'short' });
+  }
+  function nowTime() {
+    return new Date().toLocaleTimeString('en-GB', { hour:'2-digit', minute:'2-digit' });
+  }
+
+  var ML_KEY = 'jp_macro_log';
+  function loadLog() {
+    try {
+      var raw = localStorage.getItem(ML_KEY);
+      if (!raw) return { date: todayStr(), entries: [] };
+      var data = JSON.parse(raw);
+      if (data.date !== todayStr()) return { date: todayStr(), entries: [] };
+      return data;
+    } catch (e) { return { date: todayStr(), entries: [] }; }
+  }
+  function saveLog(log) { localStorage.setItem(ML_KEY, JSON.stringify(log)); }
+
+  function parseRecipeMacros(el) {
+    var t = el.querySelector('.recipe-title');
+    var m = el.querySelector('.macros');
+    if (!t || !m) return null;
+    var match = m.textContent.match(/(\d+)\s*kcal\s*·\s*(\d+)P\s*·\s*(\d+)C\s*·\s*(\d+)F/);
+    if (!match) return null;
+    return { id: el.id, name: t.textContent.trim().replace(/^\d+\.\s*/, ''),
+      kcal: +match[1], p: +match[2], c: +match[3], f: +match[4] };
+  }
+
+  // Inject "+ Log" buttons into each recipe summary
+  document.querySelectorAll('.recipe').forEach(function(recipe) {
+    var summary = recipe.querySelector('summary');
+    if (!summary) return;
+    var btn = document.createElement('button');
+    btn.className = 'btn-quick-log';
+    btn.textContent = '+ Log';
+    btn.title = 'Log this meal for today';
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      var macros = parseRecipeMacros(recipe);
+      if (!macros) return;
+      var log = loadLog();
+      log.entries.push({ id: macros.id, name: macros.name,
+        kcal: macros.kcal, p: macros.p, c: macros.c, f: macros.f, time: nowTime() });
+      saveLog(log);
+      renderLog();
+      btn.textContent = 'Logged!';
+      btn.classList.add('logged');
+      setTimeout(function() { btn.textContent = '+ Log'; btn.classList.remove('logged'); }, 1200);
+    });
+    summary.insertBefore(btn, summary.querySelector('div').nextSibling);
+  });
+
+  function renderLog() {
+    var log = loadLog();
+    var t = { kcal: 0, p: 0, c: 0, f: 0 };
+    log.entries.forEach(function(e) { t.kcal += e.kcal; t.p += e.p; t.c += e.c; t.f += e.f; });
+
+    document.getElementById('macroLogDate').textContent = friendlyDate(log.date);
+    document.getElementById('mlKcal').textContent = t.kcal;
+    document.getElementById('mlP').textContent = t.p;
+    document.getElementById('mlC').textContent = t.c;
+    document.getElementById('mlF').textContent = t.f;
+    document.getElementById('mlCount').textContent = log.entries.length;
+
+    var pPct = Math.min(100, Math.round((t.p / TARGETS.p) * 100));
+    var cPct = Math.min(100, Math.round((t.c / TARGETS.c) * 100));
+    document.getElementById('mlPBar').style.width = pPct + '%';
+    document.getElementById('mlCBar').style.width = cPct + '%';
+
+    var pPill = document.querySelector('[data-macro="p"]');
+    var cPill = document.querySelector('[data-macro="c"]');
+    pPill.classList.toggle('ok', t.p >= 130 && t.p <= 150);
+    pPill.classList.toggle('over', t.p > 150);
+    cPill.classList.toggle('ok', t.c >= 250 && t.c <= 350);
+    cPill.classList.toggle('over', t.c > 350);
+
+    var list = document.getElementById('macroLogList');
+    list.innerHTML = '';
+    log.entries.forEach(function(entry, i) {
+      var li = document.createElement('li');
+      li.innerHTML =
+        '<span class="entry-time">' + entry.time + '</span> ' +
+        '<strong>' + entry.name + '</strong>' +
+        '<span class="entry-macros">' + entry.kcal + ' kcal · ' + entry.p + 'P · ' + entry.c + 'C · ' + entry.f + 'F</span>' +
+        '<button class="remove-entry" onclick="removeLogEntry(' + i + ')" title="Remove">&times;</button>';
+      list.appendChild(li);
+    });
+  }
+
+  function removeLogEntry(index) {
+    var log = loadLog();
+    log.entries.splice(index, 1);
+    saveLog(log);
+    renderLog();
+  }
+
+  function toggleLogEntries() {
+    var el = document.getElementById('macroLogEntries');
+    el.hidden = !el.hidden;
+  }
+
+  function clearLog() {
+    if (!confirm('Clear all logged meals for today?')) return;
+    saveLog({ date: todayStr(), entries: [] });
+    renderLog();
+  }
+
+  function copyLogToClipboard() {
+    var log = loadLog();
+    if (log.entries.length === 0) { alert('No meals logged yet.'); return; }
+    var lines = ['Meal\tkcal\tProtein\tCarbs\tFat\tTime'];
+    var t = { kcal: 0, p: 0, c: 0, f: 0 };
+    log.entries.forEach(function(e) {
+      lines.push(e.name + '\t' + e.kcal + '\t' + e.p + '\t' + e.c + '\t' + e.f + '\t' + e.time);
+      t.kcal += e.kcal; t.p += e.p; t.c += e.c; t.f += e.f;
+    });
+    lines.push('TOTAL\t' + t.kcal + '\t' + t.p + '\t' + t.c + '\t' + t.f + '\t');
+    navigator.clipboard.writeText(lines.join('\n')).then(function() {
+      var btn = document.getElementById('btnCopyLog');
+      var orig = btn.innerHTML;
+      btn.classList.add('copied');
+      btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px"><polyline points="20 6 9 17 4 12"/></svg> Copied!';
+      setTimeout(function() { btn.innerHTML = orig; btn.classList.remove('copied'); }, 1500);
+    });
+  }
+
+  function downloadLogCSV() {
+    var log = loadLog();
+    if (log.entries.length === 0) { alert('No meals logged yet.'); return; }
+    var rows = [['Date','Time','Meal','kcal','Protein_g','Carbs_g','Fat_g']];
+    var t = { kcal: 0, p: 0, c: 0, f: 0 };
+    log.entries.forEach(function(e) {
+      rows.push([log.date, e.time, '"' + e.name.replace(/"/g,'""') + '"', e.kcal, e.p, e.c, e.f]);
+      t.kcal += e.kcal; t.p += e.p; t.c += e.c; t.f += e.f;
+    });
+    rows.push([log.date, '', 'TOTAL', t.kcal, t.p, t.c, t.f]);
+    var csv = rows.map(function(r) { return r.join(','); }).join('\n');
+    var blob = new Blob([csv], { type: 'text/csv' });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = 'macro-log-' + log.date + '.csv';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  }
+
+  // Shadow on sticky bar when scrolled
+  window.addEventListener('scroll', function() {
+    var bar = document.getElementById('macroLogBar');
+    if (bar) bar.classList.toggle('scrolled', window.scrollY > 10);
+  }, { passive: true });
+
+  renderLog();
 
   // --- Close mobile TOC on link click ---
   const tocMobile = document.getElementById('toc-mobile');
